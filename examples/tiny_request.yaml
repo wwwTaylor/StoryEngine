@@ -1,0 +1,161 @@
+task_id: ceramic_studio_two_rooms
+idea: >-
+  Tell a four-shot story that alternates exactly between two fixed rooms in the
+  same ceramic workshop, following the sequence Scene A, Scene B, Scene A,
+  Scene B. Scene A is a sunlit throwing studio with a pottery wheel in the
+  center, a tall window on the right wall, shelves of drying pots along the
+  back wall, and a blue clay bin to the left of the wheel. Scene B is a dim
+  kiln room with a red-brick kiln against the back wall, a steel worktable on
+  the right, a three-tier drying rack on the left, and a yellow safety lamp
+  above the only door. In shot 1, the potter finishes shaping a wet clay bowl
+  at the wheel in Scene A, leaving the bowl on a square wooden board. In shot
+  2, the same potter enters Scene B without the bowl, checks the kiln, and
+  clears the middle shelf of the drying rack. In shot 3, the potter returns to
+  the unchanged Scene A and lifts the same wet bowl together with its wooden
+  board. In shot 4, the potter returns to the unchanged Scene B carrying the
+  bowl and board, then places them on the middle shelf cleared in shot 2.
+  Preserve the exact layout of each room whenever it reappears. Keep the bowl
+  wet and unfired throughout, with no time jump, no additional location, and
+  no change to the shot order.
+
+shot_target: 4
+
+visual_style: >-
+  Clean cinematic realism with natural color grading, stable character
+  identity, consistent wardrobe, coherent lighting, and steady professional
+  camera work. Scene A uses warm daylight from the right-side window. Scene B
+  uses dim amber light from the yellow safety lamp. Preserve the geometry,
+  furniture positions, architectural details, and visual identity of each
+  room across repeated shots. Keep the two rooms visually distinct and never
+  merge their fixed environmental anchors.
+
+resolution:
+  width: 1280
+  height: 720
+
+generation_requirements:
+  output_language: English
+
+  required_entities:
+    - the same adult potter wearing an indigo apron over a beige work shirt
+    - the same wet clay bowl on the same square wooden board
+
+  forbidden_content:
+    - additional characters
+    - a third room or exterior location
+    - duplicated potter, bowl, or wooden board
+    - unexplained changes to either room layout
+    - the pottery wheel, back-wall pottery shelves, or blue clay bin appearing in the kiln room
+    - the red-brick kiln, steel worktable, or drying rack appearing in the throwing studio
+    - a glazed, dried, fired, broken, or differently shaped bowl
+    - text overlays
+    - logos
+    - watermarks
+    - on-screen captions
+
+  delivery_requirements:
+    allowed_video_duration_seconds: [4, 6, 8]
+    video_resolution:
+      width: 1280
+      height: 720
+    video_fps: 24
+    audio: false
+
+provided_assets: []
+format_version: 1
+
+runtime:
+  project:
+    output_root: runs
+
+  # Placeholder endpoints: replace base_url with your own OpenAI-compatible
+  # gateway (e.g. a LiteLLM proxy; the vertex_ai/* model names are LiteLLM routes).
+  providers:
+    planner:
+      adapter: openai_responses
+      model: gpt-5.5
+      base_url: https://your-gateway.example.com/v1
+      api_key_env: STORY_ENGINE_GATEWAY_KEY
+      timeout_seconds: 180
+      options:
+        max_attachments: 16
+        max_prompt_characters: 100000
+        preflight_mode: model_list
+        structured_output_mode: json_schema
+
+    image:
+      adapter: openai_images
+      model: gpt-image-2
+      base_url: https://your-gateway.example.com/v1
+      api_key_env: STORY_ENGINE_GATEWAY_KEY
+      timeout_seconds: 300
+      options:
+        output_format: png
+        preflight_mode: model_list
+        quality: low
+        supported_aspect_ratios:
+          - "16:9"
+          - "2:1"
+          - "1:1"
+          - "2:3"
+          - "3:2"
+        supported_resolutions:
+          - width: 1280
+            height: 720
+          - width: 1280
+            height: 640
+          - width: 1024
+            height: 1024
+          - width: 1024
+            height: 1536
+          - width: 1536
+            height: 1024
+
+    video:
+      adapter: openai_videos
+      model: vertex_ai/veo-3.1-generate-001
+      base_url: https://your-gateway.example.com/v1
+      api_key_env: STORY_ENGINE_GATEWAY_KEY
+      timeout_seconds: 300
+      options:
+        job_timeout_seconds: 1800
+        poll_interval_seconds: 10
+        preflight_mode: model_list
+        supported_durations: [4, 6, 8]
+        supported_fps: [24]
+        supported_resolutions:
+          - width: 1280
+            height: 720
+
+    judge:
+      adapter: gemini_native
+      model: vertex_ai/gemini-3.5-flash
+      base_url: https://your-gateway.example.com/v1beta
+      api_key_env: STORY_ENGINE_GATEWAY_KEY
+      timeout_seconds: 180
+      options:
+        credential_mode: bearer
+        judge_max_media: 16
+        judge_media_types:
+          - image/png
+          - image/jpeg
+          - image/webp
+          - video/mp4
+        max_attachments: 16
+        max_prompt_characters: 100000
+        preflight_mode: model_list
+        structured_output_mode: json_schema
+
+  generation:
+    attempts: 5
+    story_planning_attempts: 5
+    grounding_attempts: 5
+    candidates_per_attempt: 1
+    provider_retries: 1
+    max_concurrency: 2
+    spatial_failure_policy: degrade
+    spatial_repair_attempts: 2
+    novel_station_attempts: 2
+    max_hfov_degrees: 110
+    safe_fallback_hfov_min: 60
+    safe_fallback_hfov_max: 90

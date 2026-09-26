@@ -1,0 +1,1 @@
+"""Concrete provider protocol adapters."""

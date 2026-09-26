@@ -1,0 +1,17 @@
+"""Package and implementation version identifiers."""
+
+__version__ = "1.2.0"
+
+STORY_COMPILER_VERSION = "story-compiler-v13-provided-asset-bindings"
+WORLD_REDUCER_VERSION = "world-reducer-v1"
+REFERENCE_COMPILER_VERSION = "reference-compiler-v8-guided-assets"
+PANORAMA_PROJECTOR_VERSION = "panorama-projector-v1"
+GROUNDING_VALIDATOR_VERSION = "grounding-validator-v3-conditional-visibility"
+FOV_SOLVER_VERSION = "common-fov-solver-v2-margin"
+SPATIAL_RESOLVER_VERSION = "spatial-resolver-v3-grounding-unavailable"
+CAMERA_SOLVER_VERSION = "camera-solver-v4-novel-panorama"
+RENDER_COMPILER_VERSION = "render-compiler-v10-scene-panorama-input"
+PROMPT_RENDERER_VERSION = "prompt-renderer-v23-guided-assets"
+SELECTION_POLICY_VERSION = "selection-policy-v1"
+WORKFLOW_VERSION = "workflow-v12-guided-assets"
+MANIFEST_VERSION = "manifest-v5-spatial-failure-evidence"

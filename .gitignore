@@ -1,0 +1,37 @@
+.venv/
+.uv-cache/
+.pytest_cache/
+.pytest-tmp/
+.mypy_cache/
+.ruff_cache/
+.audit/
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+
+# Credentials and local configuration
+API_KEY.txt
+.env
+.env.*
+config.yaml
+config.local.yaml
+*.local.yaml
+*.local.yml
+*.local.json
+*.pem
+*.key
+*.p12
+*.pfx
+.netrc
+.pypirc
+.secrets/
+
+# Generated runs and test artifacts
+runs/
+*.log
+config.redacted.json
+events.jsonl
+.coverage
+htmlcov/

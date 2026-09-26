@@ -1,0 +1,23 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "story-engine"
+version = "1.2.0"
+description = "Evidence-first story-to-video production engine"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+  "httpx>=0.28,<1",
+  "numpy>=2.0,<3",
+  "pillow>=11,<13",
+  "pydantic>=2.11,<3",
+  "PyYAML>=6.0.2,<7",
+]
+
+[project.scripts]
+story-engine = "story_engine.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["story_engine"]
