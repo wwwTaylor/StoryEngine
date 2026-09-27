@@ -73,8 +73,8 @@ runtime:
   providers:
     planner:
       adapter: openai_responses
-      model: gpt-5.5
-      base_url: https://your-gateway.example.com/v1
+      model: 
+      base_url: https://your-gateway.example.com
       api_key_env: STORY_ENGINE_GATEWAY_KEY
       timeout_seconds: 180
       options:
@@ -85,8 +85,8 @@ runtime:
 
     image:
       adapter: openai_images
-      model: gpt-image-2
-      base_url: https://your-gateway.example.com/v1
+      model: 
+      base_url: https://your-gateway.example.com
       api_key_env: STORY_ENGINE_GATEWAY_KEY
       timeout_seconds: 300
       options:
@@ -113,8 +113,8 @@ runtime:
 
     video:
       adapter: openai_videos
-      model: vertex_ai/veo-3.1-generate-001
-      base_url: https://your-gateway.example.com/v1
+      model: 
+      base_url: https://your-gateway.example.com
       api_key_env: STORY_ENGINE_GATEWAY_KEY
       timeout_seconds: 300
       options:
@@ -129,8 +129,8 @@ runtime:
 
     judge:
       adapter: gemini_native
-      model: vertex_ai/gemini-3.5-flash
-      base_url: https://your-gateway.example.com/v1beta
+      model: 
+      base_url: https://your-gateway.example.com
       api_key_env: STORY_ENGINE_GATEWAY_KEY
       timeout_seconds: 180
       options:
