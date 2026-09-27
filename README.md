@@ -1,6 +1,6 @@
 # StoryEngine
 
-StoryEngine 是一个“证据优先”的故事转视频引擎，提供故事规划、参考素材生成、空间与机位求解、逐镜头生成和评估，以及最终视频组装。
+StoryEngine 是一个故事转视频引擎，提供故事规划、参考素材生成、空间与机位求解、逐镜头生成和评估，以及最终视频组装。
 
 版本：`1.2.0` · Python：`>= 3.12`
 
@@ -61,7 +61,6 @@ uv run story-engine validate tiny_request.local.yaml
 uv run story-engine run tiny_request.local.yaml --run-id my-run
 ```
 
-输入校验不访问真实 Provider，也不验证其可达性。正式运行需要有效凭据和支持所选能力的服务。
 
 中断后可恢复已有运行：
 
