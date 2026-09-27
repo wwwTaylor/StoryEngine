@@ -1,0 +1,380 @@
+{
+  "project": "StoryEngine",
+  "title": "StoryEngine: A State-Grounded Agentic Framework for Video Storytelling",
+  "subtitle": "A State-Grounded Agentic Framework for Video Storytelling",
+  "description": "StoryEngine turns a story brief into a sequence of visually grounded shots. It tracks where recurring entities are and how events change them, then uses shared references and bounded local repair to keep the rendered story aligned with the plan.",
+  "authors": [
+    {
+      "name": "Yingrui Wang",
+      "equalContribution": true,
+      "affiliations": [
+        "Tencent",
+        "National University of Singapore"
+      ]
+    },
+    {
+      "name": "Zeqing Wang",
+      "equalContribution": true,
+      "affiliations": [
+        "Tencent",
+        "National University of Singapore"
+      ]
+    },
+    {
+      "name": "Yeying Jin",
+      "correspondingAuthor": true,
+      "projectLead": true,
+      "affiliations": [
+        "Tencent",
+        "National University of Singapore"
+      ]
+    }
+  ],
+  "centralIdea": "Keep the story's intended state authoritative. Use generated pixels as visual evidence, without letting a local rendering error rewrite what happens next.",
+  "stages": [
+    {
+      "title": "Propagate story states",
+      "subtitle": "What must be true",
+      "body": "Track recurring entities, their locations, and story-relevant attributes. Apply planned event effects to define the intended start and end state of every shot."
+    },
+    {
+      "title": "Ground the render plan",
+      "subtitle": "How it should be shown",
+      "body": "Build shared character, object, and environment references. Bind each shot to action-relevant views, camera constraints, and explicit start, motion, and end criteria."
+    },
+    {
+      "title": "Generate and repair",
+      "subtitle": "Which evidence can carry forward",
+      "body": "Reuse, reference, or discard prior visual evidence according to the next shot's intended state. Evaluate and repair local failures while keeping the semantic plan fixed."
+    }
+  ],
+  "benchmark": {
+    "stories": 60,
+    "shotsPerStory": 10,
+    "locationsPerStory": 2,
+    "suites": [
+      {
+        "id": "N20",
+        "name": "Narrative realization",
+        "stories": 20
+      },
+      {
+        "id": "T20",
+        "name": "Cross-shot coherence",
+        "stories": 20
+      },
+      {
+        "id": "C20",
+        "name": "Visual consistency",
+        "stories": 20
+      }
+    ],
+    "settingCategories": [
+      "Store",
+      "Food",
+      "Transit",
+      "Workshop",
+      "Control Room"
+    ],
+    "reportedDistinctSettings": 50,
+    "backbones": [
+      "Veo 3.1",
+      "Wan2.2-TI2V-5B"
+    ]
+  },
+  "metrics": [
+    {
+      "id": "PEC",
+      "name": "Plan Event Coverage",
+      "group": "Narrative",
+      "videoBased": false
+    },
+    {
+      "id": "ECS",
+      "name": "Event Completion Score",
+      "group": "Narrative",
+      "videoBased": true
+    },
+    {
+      "id": "APR",
+      "name": "Anchor Persistence Rate",
+      "group": "Coherence",
+      "videoBased": true
+    },
+    {
+      "id": "SPS",
+      "name": "State Progression Score",
+      "group": "Coherence",
+      "videoBased": true
+    },
+    {
+      "id": "LAR",
+      "name": "Location Adherence Rate",
+      "group": "Coherence",
+      "videoBased": true
+    },
+    {
+      "id": "GPC",
+      "name": "Geometric Place Consistency",
+      "group": "Consistency",
+      "videoBased": true
+    },
+    {
+      "id": "MIR",
+      "name": "Minimum Identity Retention",
+      "group": "Consistency",
+      "videoBased": true
+    },
+    {
+      "id": "LCS",
+      "name": "Lighting Coherence Score",
+      "group": "Consistency",
+      "videoBased": true
+    }
+  ],
+  "mainResults": [
+    {
+      "backbone": "Veo 3.1",
+      "method": "Direct I2V",
+      "PEC": null,
+      "ECS": 0.6225,
+      "APR": 0.5389,
+      "SPS": 0.4406,
+      "LAR": 0.8121,
+      "GPC": 0.7342,
+      "MIR": 0.3012,
+      "LCS": 0.2347,
+      "Avg": 0.5263
+    },
+    {
+      "backbone": "Veo 3.1",
+      "method": "ViMAX",
+      "PEC": 0.9052,
+      "ECS": 0.9067,
+      "APR": 0.55,
+      "SPS": 0.5787,
+      "LAR": 0.8684,
+      "GPC": 0.854,
+      "MIR": 0.385,
+      "LCS": 0.2488,
+      "Avg": 0.6274
+    },
+    {
+      "backbone": "Veo 3.1",
+      "method": "MovieAgent",
+      "PEC": 0.9694,
+      "ECS": 0.8783,
+      "APR": 0.4333,
+      "SPS": 0.5579,
+      "LAR": 0.7889,
+      "GPC": 0.6535,
+      "MIR": 0.2508,
+      "LCS": 0.2125,
+      "Avg": 0.5393
+    },
+    {
+      "backbone": "Veo 3.1",
+      "method": "StoryEngine",
+      "PEC": 0.9798,
+      "ECS": 0.9225,
+      "APR": 0.9389,
+      "SPS": 0.6681,
+      "LAR": 0.98,
+      "GPC": 0.8971,
+      "MIR": 0.4072,
+      "LCS": 0.5691,
+      "Avg": 0.769
+    },
+    {
+      "backbone": "Wan2.2-TI2V-5B",
+      "method": "Direct I2V",
+      "PEC": null,
+      "ECS": 0.585,
+      "APR": 0.6722,
+      "SPS": 0.4653,
+      "LAR": 0.7358,
+      "GPC": 0.6866,
+      "MIR": 0.2973,
+      "LCS": 0.2272,
+      "Avg": 0.5242
+    },
+    {
+      "backbone": "Wan2.2-TI2V-5B",
+      "method": "ViMAX",
+      "PEC": 0.9052,
+      "ECS": 0.775,
+      "APR": 0.5278,
+      "SPS": 0.6024,
+      "LAR": 0.825,
+      "GPC": 0.8617,
+      "MIR": 0.3926,
+      "LCS": 0.2633,
+      "Avg": 0.6068
+    },
+    {
+      "backbone": "Wan2.2-TI2V-5B",
+      "method": "MovieAgent",
+      "PEC": 0.9694,
+      "ECS": 0.835,
+      "APR": 0.3667,
+      "SPS": 0.6129,
+      "LAR": 0.7688,
+      "GPC": 0.6925,
+      "MIR": 0.2849,
+      "LCS": 0.2366,
+      "Avg": 0.5425
+    },
+    {
+      "backbone": "Wan2.2-TI2V-5B",
+      "method": "StoryEngine",
+      "PEC": 0.9798,
+      "ECS": 0.8733,
+      "APR": 0.8444,
+      "SPS": 0.6219,
+      "LAR": 0.9749,
+      "GPC": 0.882,
+      "MIR": 0.4264,
+      "LCS": 0.5372,
+      "Avg": 0.7372
+    }
+  ],
+  "resultsNote": "All metrics are higher-is-better. Avg is the equal-weight mean of seven video metrics, excluding plan-only PEC. Scores are automatic benchmark metrics, not human preference ratings.",
+  "limitations": "The benchmark focuses on fictional, visually oriented stories with 10 shots and two locations. StoryEngine can retain planning mistakes, and bounded repair does not guarantee perfect motion or physical interaction. Dialogue, audio continuity, crowded casts, and much longer narratives remain outside this evaluation.",
+  "preliminaryBibtex": "@unpublished{wang_storyengine,\n  title  = {StoryEngine: A State-Grounded Agentic Framework for Video Storytelling},\n  author = {Wang, Yingrui and Wang, Zeqing and Jin, Yeying},\n  note   = {Manuscript}\n}",
+  "showcases": [
+    {
+      "id": "gauge",
+      "title": "Reading the Signals",
+      "description": "An instrument-lined corridor and a service room form a connected working environment.",
+      "video": "assets/videos/gauge.mp4",
+      "poster": "assets/posters/gauge.webp",
+      "duration": 60.0,
+      "backbone": "Veo 3.1",
+      "focus": "the layout of a revisited environment"
+    },
+    {
+      "id": "cooperage",
+      "title": "The Cooper's Craft",
+      "description": "A cooper moves between a workshop and the workbench, preserving the people and objects that make the craft legible.",
+      "video": "assets/videos/cooperage.mp4",
+      "poster": "assets/posters/cooperage.webp",
+      "duration": 60.0,
+      "backbone": "Veo 3.1",
+      "focus": "the sequence of hands-on craft"
+    },
+    {
+      "id": "glass",
+      "title": "Shaping Fire",
+      "description": "Orange furnace light, a recurring craftsman, and a glowing workpiece across a ten-shot story.",
+      "video": "assets/videos/glass.mp4",
+      "poster": "assets/posters/glass.webp",
+      "duration": 60.0,
+      "backbone": "Veo 3.1",
+      "focus": "the workpiece and tool state across shots"
+    },
+    {
+      "id": "lock",
+      "title": "Lock and Key",
+      "description": "Small tools, recurring workspaces, and precise actions in a story of hands-on craft.",
+      "video": "assets/videos/lock.mp4",
+      "poster": "assets/posters/lock.webp",
+      "duration": 60.0,
+      "backbone": "Veo 3.1",
+      "focus": "fine-grained actions around recurring objects"
+    },
+    {
+      "id": "net",
+      "title": "Threads of the Harbor",
+      "description": "A net-maker’s work connects a warm repair shed with a bright, open harbor.",
+      "video": "assets/videos/net.mp4",
+      "poster": "assets/posters/net.webp",
+      "duration": 60.0,
+      "backbone": "Veo 3.1",
+      "focus": "identity and props across indoor and outdoor scenes"
+    }
+  ],
+  "comparisons": [
+    {
+      "id": "notebook",
+      "title": "Back for the Notebook",
+      "description": "Track what stays behind. A student returns for a notebook while the backpack should remain in its locker.",
+      "methods": {
+        "ours": {
+          "video": "assets/videos/notebook-ours.mp4",
+          "poster": "assets/posters/notebook-ours.webp",
+          "duration": 28.0
+        },
+        "movieagent": {
+          "video": "assets/videos/notebook-movieagent.mp4",
+          "poster": "assets/posters/notebook-movieagent.webp",
+          "duration": 16.08
+        },
+        "vimax": {
+          "video": "assets/videos/notebook-vimax.mp4",
+          "poster": "assets/posters/notebook-vimax.webp",
+          "duration": 16.08
+        }
+      },
+      "watchFor": [
+        "Backpack stays in the locker",
+        "Notebook is retrieved",
+        "Student and locations remain recognizable"
+      ]
+    },
+    {
+      "id": "painter",
+      "title": "Painting Across Landscapes",
+      "description": "Follow a recurring painter and painting activity through a desert, a stormy coast, and snow.",
+      "methods": {
+        "ours": {
+          "video": "assets/videos/painter-ours.mp4",
+          "poster": "assets/posters/painter-ours.webp",
+          "duration": 64.0
+        },
+        "movieagent": {
+          "video": "assets/videos/painter-movieagent.mp4",
+          "poster": "assets/posters/painter-movieagent.webp",
+          "duration": 48.16
+        },
+        "vimax": {
+          "video": "assets/videos/painter-vimax.mp4",
+          "poster": "assets/posters/painter-vimax.webp",
+          "duration": 48.24
+        }
+      },
+      "watchFor": [
+        "The same painter across scenes",
+        "Props follow the painting activity",
+        "Landscape changes preserve the story"
+      ]
+    },
+    {
+      "id": "recipe",
+      "title": "A Recipe on the Move",
+      "description": "Compare how a recurring chef, recipe, and cooking activity carry across changing settings.",
+      "methods": {
+        "ours": {
+          "video": "assets/videos/recipe-ours.mp4",
+          "poster": "assets/posters/recipe-ours.webp",
+          "duration": 35.2
+        },
+        "movieagent": {
+          "video": "assets/videos/recipe-movieagent.mp4",
+          "poster": "assets/posters/recipe-movieagent.webp",
+          "duration": 32.12
+        },
+        "vimax": {
+          "video": "assets/videos/recipe-vimax.mp4",
+          "poster": "assets/posters/recipe-vimax.webp",
+          "duration": 32.16
+        }
+      },
+      "watchFor": [
+        "Chef identity across kitchens",
+        "Recipe and cooking props persist",
+        "Actions follow the cooking sequence"
+      ]
+    }
+  ],
+  "abstract": "Despite recent progress in agentic multi-shot video generation, producing coherent and consistent long-form stories remains challenging. Existing agentic pipelines typically rely on textual shot plans or previously generated pixels, yet lack an explicit mechanism for propagating the consequences of story events and maintaining the video world state across shots. As a result, missing visual details may be reconstructed inaccurately, while visual drift may propagate across subsequent shots, undermining both narrative coherence and visual consistency. To address these challenges, we propose StoryEngine, a state-grounded agentic framework for video storytelling. StoryEngine establishes a separation between authoritative semantic plans and unreliable visual observations. Specifically, StoryEngine maintains a structured representation of entity placement and story-relevant states, and propagates event-induced changes to define the intended start and end states of each shot. To visually realize these states, StoryEngine constructs canonical references for recurring entities and environments, and compiles state and visual constraints into executable render plans. Meanwhile, to realize these states correctly, a bounded evaluation-guided repair loop further corrects local state inconsistencies. Together, these mechanisms preserve causal story progression and prevent local visual errors from propagating across shots. To comprehensively evaluate long-form storytelling, we construct a benchmark across diverse scenarios and visual styles, with metrics assessing storytelling quality, narrative coherence, and visual consistency. Experimental results demonstrate that StoryEngine consistently outperforms state-of-the-art methods across all evaluation dimensions, validating its effectiveness for coherent and consistent video storytelling."
+}

@@ -1,0 +1,20 @@
+__pycache__/
+node_modules/
+.DS_Store
+*.log
+.preview/
+
+# Private local configuration
+.env
+.env.*
+*.key
+*.pem
+
+# Local source assets excluded from the public website
+/assets/paper/
+/assets/figures/*.pdf
+/assets/posters/hero-wide.webp
+/assets/videos/hero-loop.mp4
+
+# Pages publishes directly from gh-pages; this template is not used
+/.github/workflows/pages.yml
