@@ -35,3 +35,9 @@ config.redacted.json
 events.jsonl
 .coverage
 htmlcov/
+
+# Local development material excluded from the public source distribution
+/docs/
+/tests/
+/CHANGELOG.md
+/SECURITY.md
