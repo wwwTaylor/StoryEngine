@@ -240,7 +240,7 @@ window.STORYENGINE_DATA = {
   ],
   "resultsNote": "All metrics are higher-is-better. Avg is the equal-weight mean of seven video metrics, excluding plan-only PEC. Scores are automatic benchmark metrics, not human preference ratings.",
   "limitations": "The benchmark focuses on fictional, visually oriented stories with 10 shots and two locations. StoryEngine can retain planning mistakes, and bounded repair does not guarantee perfect motion or physical interaction. Dialogue, audio continuity, crowded casts, and much longer narratives remain outside this evaluation.",
-  "preliminaryBibtex": "@unpublished{wang_storyengine,\n  title  = {StoryEngine: A State-Grounded Agentic Framework for Video Storytelling},\n  author = {Wang, Yingrui and Wang, Zeqing and Jin, Yeying},\n  note   = {Manuscript}\n}",
+  "preliminaryBibtex": "@misc{wang2026storyenginestategroundedagenticframework,\n      title={StoryEngine: A State-Grounded Agentic Framework for Video Storytelling},\n      author={Yingrui Wang and Zeqing Wang and Yeying Jin},\n      year={2026},\n      eprint={2609.33627},\n      archivePrefix={arXiv},\n      primaryClass={cs.CV},\n      url={https://arxiv.org/abs/2609.33627},\n}",
   "showcases": [
     {
       "id": "gauge",
